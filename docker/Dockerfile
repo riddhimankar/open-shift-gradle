@@ -53,12 +53,9 @@ LABEL \
     io.k8s.display-name="Gradle builder ${BUILDER_VERSION}" \
     io.openshift.tags="builder,maven-3,gradle-${GRADLE_VERSION},springboot" \
     io.openshift.s2i.scripts-url=image://$S2I_PATH
+    
+USER 185
 
 CMD [ "/bin/bash", "-c", "$S2I_PATH/usage" ]
 
 COPY s2i/bin/* ${S2I_PATH}/
-
-RUN chown -R 1001:1001 ${S2I_PATH}
-USER 1001
-
-EXPOSE 8080
