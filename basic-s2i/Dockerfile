@@ -10,6 +10,9 @@ LABEL io.k8s.description="Java with JDK" \
     com.redhat.dev-mode="JAVA_DEBUG:false" \
     com.redhat.dev-mode.port="JAVA_DEBUG_PORT:5005"
 
+# Temporary switch to root
+USER root
+
 RUN yum -y update \
   && yum install -y --setopt=skip_missing_names_on_install=False \
        unzip rsync \
