@@ -17,8 +17,9 @@ RUN yum -y update \
        java-1.8.0-openjdk-devel \
   && yum clean all \
 
-# S2I scripts + README
+# S2I scripts
 COPY s2i /usr/libexec/s2i
+ADD README.md /usr/libexec/s2i/usage.txt
 RUN chmod +x /usr/libexec/s2i/*
 
 RUN chmod -R 777 /opt

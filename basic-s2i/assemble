@@ -1,6 +1,0 @@
-
-cd /tmp/src/
-rm -rf builds/libs
-./gradlew fatjar
-
-mv build/libs/*.jar /opt/app.jar
