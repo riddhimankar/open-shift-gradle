@@ -56,6 +56,6 @@ LABEL \
     
 USER 185
 
-CMD [ "/bin/bash", "-c", "$S2I_PATH/usage" ]
+CMD ["$S2I_PATH/usage"]
 
 COPY s2i/bin/* ${S2I_PATH}/
