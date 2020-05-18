@@ -63,4 +63,4 @@ USER 1001
 
 EXPOSE 8080
 
-CMD ["$S2I_PATH/usage"]
+CMD ["/usr/local/s2i-gradle/usage"]
