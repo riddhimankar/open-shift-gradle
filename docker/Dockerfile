@@ -22,7 +22,7 @@ RUN \
 	&& \
     curl \
 	-sSL \
-	    "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	    "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	-o \
 	    /tmp/gradle-bin.zip \
 	&& \
