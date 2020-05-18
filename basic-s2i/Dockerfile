@@ -4,7 +4,7 @@ MAINTAINER Richard Weber <riche.weber@gmail.com>
 LABEL io.k8s.description="Java with JDK" \
     io.openshift.tags="builder,java,jdk" \
     io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
-	io.openshift.s2i.destination="/tmp" \
+    io.openshift.s2i.destination="/tmp" \
     org.jboss.deployments-dir="/deployments" \
     com.redhat.deployments-dir="/deployments" \
     com.redhat.dev-mode="JAVA_DEBUG:false" \
