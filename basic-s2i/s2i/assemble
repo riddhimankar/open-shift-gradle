@@ -283,7 +283,7 @@ else
 fi
 
 # check if this is a fat jar executable archive. SpringBoot fat jars can be exploded
-echo "Checking for fat jar archive..."
+echo "Checking for fat jar archive in ${DEPLOYMENTS_DIR}..."
 old_dir=`pwd`
 cd "${DEPLOYMENTS_DIR}"
 nr_jars=`ls *.jar 2>/dev/null | grep -v '^original-' | wc -l | tr -d '[[:space:]]'`

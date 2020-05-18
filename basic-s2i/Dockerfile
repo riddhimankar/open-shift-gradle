@@ -3,7 +3,7 @@ MAINTAINER Richard Weber <riche.weber@gmail.com>
 
 LABEL io.k8s.description="Java with JDK" \
     io.openshift.tags="builder,java,jdk" \
-    io.openshift.s2i.scripts-url="image:///usr/libexec/s2i" \
+    io.openshift.s2i.scripts-url="image:///usr/local/s2i" \
     io.openshift.s2i.destination="/tmp" \
     org.jboss.deployments-dir="/deployments" \
     com.redhat.deployments-dir="/deployments" \
@@ -21,9 +21,9 @@ USER root
 #  && yum clean all \
 
 # S2I scripts
-COPY s2i /usr/libexec/s2i
-ADD README.md /usr/libexec/s2i/usage.txt
-RUN chmod +x /usr/libexec/s2i/*
+COPY s2i /usr/local/s2i
+ADD README.md /usr/local/s2i/usage.txt
+RUN chmod +x /usr/local/s2i/*
 
 RUN chmod -R 777 /opt
 

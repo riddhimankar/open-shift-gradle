@@ -1,3 +1,3 @@
 
 
-java -jar /opt/app.jar
+java -jar /deployments/oc-gradle-demo-0.0.1*.jar
