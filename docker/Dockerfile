@@ -11,8 +11,16 @@ MAINTAINER dmitry sevostyanov <dsevosty@redhat.com>
 ARG GRADLE_VERSION
 ARG OLD_S2I_PATH
 
-USER 0
+# Docker Image Metadata
+LABEL \
+    io.k8s.description="Platform for building Spring Boot applications with maven or gradle" \
+    io.k8s.display-name="Gradle builder ${BUILDER_VERSION}" \
+    io.openshift.tags="builder,maven-3,gradle-${GRADLE_VERSION},springboot" \
+    io.openshift.s2i.scripts-url=image://$S2I_PATH
+	
+#USER 0
 
+# Install Gradle
 RUN \
     set -x ; \
     [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
@@ -48,14 +56,11 @@ ENV \
     BUILDER_VERSION=1.0 \
     S2I_PATH=/usr/local/s2i-gradle
 
-LABEL \
-    io.k8s.description="Platform for building Spring Boot applications with maven or gradle" \
-    io.k8s.display-name="Gradle builder ${BUILDER_VERSION}" \
-    io.openshift.tags="builder,maven-3,gradle-${GRADLE_VERSION},springboot" \
-    io.openshift.s2i.scripts-url=image://$S2I_PATH
+COPY s2i/bin/* ${S2I_PATH}/
     
-USER 185
+RUN chown -R 1001:1001 /opt/app-root
+USER 1001
+
+EXPOSE 8080
 
 CMD ["$S2I_PATH/usage"]
-
-COPY s2i/bin/* ${S2I_PATH}/
