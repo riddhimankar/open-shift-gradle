@@ -58,7 +58,7 @@ ENV \
 
 COPY s2i/bin/* ${S2I_PATH}/
     
-RUN chown -R 1001:1001 /opt/app-root
+RUN chown -R 1001:1001 $S2I_PATH
 USER 1001
 
 EXPOSE 8080
