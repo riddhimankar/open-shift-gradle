@@ -1,3 +1,6 @@
+#!/bin/bash
+# Global S2I variable setup
+source `dirname "$0"`/s2i-setup
 
-
-java -jar /deployments/oc-gradle-demo-0.0.1*.jar
+exec echo "${DEPLOYMENTS_DIR} ..."
+exec java -jar ${DEPLOYMENTS_DIR}/oc-gradle-demo-0.0.1.jar
