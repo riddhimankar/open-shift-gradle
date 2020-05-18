@@ -13,12 +13,12 @@ LABEL io.k8s.description="Java with JDK" \
 # Temporary switch to root
 USER root
 
-RUN yum -y update \
-  && yum install -y --setopt=skip_missing_names_on_install=False \
-       unzip rsync \
-       java-1.8.0-openjdk \
-       java-1.8.0-openjdk-devel \
-  && yum clean all \
+#RUN yum -y update \
+#  && yum install -y --setopt=skip_missing_names_on_install=False \
+#       unzip rsync \
+#       java-1.8.0-openjdk \
+#       java-1.8.0-openjdk-devel \
+#  && yum clean all \
 
 # S2I scripts
 COPY s2i /usr/libexec/s2i
