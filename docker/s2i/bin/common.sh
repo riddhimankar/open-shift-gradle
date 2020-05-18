@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "inside common file"
 __COMMON_ALREADY_LOADED=${__COMMON_ALREADY_LOADED:-1}
 
 function __check_common_already_loaded() {

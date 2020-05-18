@@ -3,6 +3,7 @@
 #
 #
 #
+echo "inside usage file"
 function print_functions() {
     cat << EOF
 There are functions in $1:

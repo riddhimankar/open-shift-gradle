@@ -7,18 +7,22 @@
 # https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
 #
 
+echo "Inside assemble file"
 [ "$SCRIPT_DEBUG" = "true" ] && { set -x ; printenv ; }
 
 if [ "$1" = "-h" ]; then
+	echo "at 1"
     exec $S2I_PATH/usage
 fi
 
+echo "at 2"
 __check_common_already_loaded 2> /dev/null || source $S2I_PATH/common.sh
 
 case $BUILDER in
     [Gg][Rr][Aa][Dd][Ll][Ee])
 	restore_artifacts
 	build_gradle_project
+	echo "at 3"
 	;;
     [Mm][Aa][Vv][Ee][Nn])
 	build_maven_project
@@ -27,10 +31,11 @@ case $BUILDER in
 	if [ -f "$S2I_SOURCE_DIR/build.gradle" ]; then
 	    restore_artifacts
 	    build_gradle_project
+		echo "at 4"
 	elif [ -f "$S2I_SOURCE_DIR/pom.xml" ]; then
 	    build_maven_project
 	fi
 	;;
 esac
-
+echo "at 5"
 check_build
