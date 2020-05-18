@@ -18,7 +18,7 @@ LABEL \
     io.openshift.tags="builder,maven-3,gradle-${GRADLE_VERSION},springboot" \
     io.openshift.s2i.scripts-url=image://$S2I_PATH
 	
-#USER 0
+USER 0
 
 # Install Gradle
 RUN \
