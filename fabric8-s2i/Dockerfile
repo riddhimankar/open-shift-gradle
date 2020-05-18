@@ -1,4 +1,4 @@
-FROM openshift/base-centos7
+FROM centos:7
 
 ARG EXPOSE_PORT=8080
 EXPOSE ${EXPOSE_PORT}
