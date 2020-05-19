@@ -1,4 +1,0 @@
-#!/bin/bash -e
-echo "inside run file"
-exec $OLD_S2I_PATH/run $*
-echo "run complete"
