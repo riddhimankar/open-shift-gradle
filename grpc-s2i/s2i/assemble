@@ -55,7 +55,7 @@ function copy_dir() {
   cp -a ${src}/* ${dest}
 }
 
-function copy_grpc_artifacts() 
+function copy_grpc_artifacts() {
     local dir=$1
     local dest=$2
 
