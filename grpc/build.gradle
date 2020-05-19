@@ -13,6 +13,9 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'com.google.protobuf'
 
+group = 'example.armeria.grpc'
+version = '1.0.0'
+
 repositories {
     mavenCentral()
 }
