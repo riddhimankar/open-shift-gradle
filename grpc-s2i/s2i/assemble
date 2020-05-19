@@ -175,7 +175,9 @@ function get_gradle_output_dir() {
 
   # If multi module build and no ARTIFACT_DIR is set --> error
   if [ x"${ARTIFACT_DIR}" = x ]; then
-    dir="${S2I_SOURCE_DIR}/build/distributions"
+    #dir="${S2I_SOURCE_DIR}/build/distributions"
+	echo "ARTIFACT_DIR \"${ARTIFACT_DIR}\"..."
+	dir="${S2I_SOURCE_DIR}/build/libs"
   else
     if [ "${ARTIFACT_DIR:0:1}" = "/" ]; then
        echo "ARTIFACT_DIR \"${ARTIFACT_DIR}\" must not be absolute but relative to the source directory"
@@ -311,12 +313,12 @@ if [ ${nr_jars} = 1 ]; then
 fi
 
 # GRPC DISTRIBUTION
-nr_zip=`ls *.zip 2>/dev/null | grep -v '^original-' | wc -l | tr -d '[[:space:]]'`
-if [ ${nr_zip} = 1 ]; then
-  single_zip=`ls *.zip | grep -v '^original-'`
-  echo "Found ${single_zip}..."
-  grpc_dist=`unzip -l "${single_zip}" 2>/dev/null | grep -e 'spring-boot-devtools-.*\.jar' | wc -l | tr -d '[[:space:]]'`
-fi
+#nr_zip=`ls *.zip 2>/dev/null | grep -v '^original-' | wc -l | tr -d '[[:space:]]'`
+#if [ ${nr_zip} = 1 ]; then
+#  single_zip=`ls *.zip | grep -v '^original-'`
+#  echo "Found ${single_zip}..."
+#  grpc_dist=`unzip -l "${single_zip}" 2>/dev/null | grep -e 'spring-boot-devtools-.*\.jar' | wc -l | tr -d '[[:space:]]'`
+#fi
 
 cd "${old_dir}"
 
