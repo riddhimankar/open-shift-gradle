@@ -27,8 +27,8 @@ RUN chmod +x /usr/local/s2i/*
 
 RUN chmod -R 777 /opt
 
-EXPOSE 8080:9001
-EXPOSE 8081:9002
+EXPOSE 9001
+EXPOSE 9002
 
 USER 1001
 
