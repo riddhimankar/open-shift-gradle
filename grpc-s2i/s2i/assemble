@@ -363,7 +363,7 @@ nr_zip=`ls *.zip 2>/dev/null | grep -v '^original-' | wc -l | tr -d '[[:space:]]
 if [ ${nr_zip} = 1 ]; then
   single_zip=`ls *.zip | grep -v '^original-'`
   echo "Found ${single_zip}..."
-  grpc_dist=`unzip -l "${single_zip}" 2>/dev/null | grep -e 'spring-boot-devtools-.*\.jar' | wc -l | tr -d '[[:space:]]'`
+  unzip -q "${single_zip}"
 fi
 
 cd "${old_dir}"
