@@ -1,0 +1,5 @@
+#!/bin/bash
+# Global S2I variable setup
+source `dirname "$0"`/s2i-setup
+
+exec java -jar ${DEPLOYMENTS_DIR}/*.jar
