@@ -314,8 +314,8 @@ elif ls ${S2I_SOURCE_DIR}/*.gradle* &> /dev/null; then
   build_lib=$(get_gradle_output_libs)
   build_dist=$(get_gradle_output_dist)
   check_error "Cannot get output dir: $build_lib" $?
-  build_gradle_grpc ${build_dist} ${DEPLOYMENTS_DIR}
   build_gradle ${build_lib} ${DEPLOYMENTS_DIR}
+  build_gradle_grpc ${build_dist} ${DEPLOYMENTS_DIR}
 
 
 else
