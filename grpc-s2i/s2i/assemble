@@ -55,6 +55,19 @@ function copy_dir() {
   cp -a ${src}/* ${dest}
 }
 
+function copy_grpc_artifacts() 
+    local dir=$1
+    local dest=$2
+
+    #cd ${dir}
+
+    local cp_args=${dir}/"*.zip"
+	
+    echo "Running: cp -v ${cp_args} ${dest}"
+    cp -v ${cp_args} ${dest}
+
+}
+
 function copy_artifacts() {
     local dir=$1
     local dest=$2
@@ -170,13 +183,13 @@ function build_maven() {
 # =========================================================================
 # Gradle support
 
-function get_gradle_output_dir() {
+function get_gradle_output_libs() {
   local dir=""
 
   # If multi module build and no ARTIFACT_DIR is set --> error
   if [ x"${ARTIFACT_DIR}" = x ]; then
     #dir="${S2I_SOURCE_DIR}/build/distributions"
-	dir="${S2I_SOURCE_DIR}/build/*"
+	dir="${S2I_SOURCE_DIR}/build/libs"
   else
     if [ "${ARTIFACT_DIR:0:1}" = "/" ]; then
        echo "ARTIFACT_DIR \"${ARTIFACT_DIR}\" must not be absolute but relative to the source directory"
@@ -233,7 +246,20 @@ function build_gradle() {
   cd ${old_dir}
 }
 
+function build_gradle_grpc() {
 
+  # Where distribution artifacts are created during build
+  local build_dist=$1
+  
+  # Where to put the artifacts
+  local app_dir=$2
+# ==============
+  # Copy artifacts
+  echo "Copying Gradle artifacts from ${build_dir} to ${app_dir} ..."
+  copy_grpc_artifacts ${build_dist} ${app_dir}
+  check_error "copying artifacts from ${build_dir} to ${app_dir}" $?
+
+}
 
 # =========================================================================
 # Main
@@ -267,9 +293,11 @@ elif [ -f "${S2I_SOURCE_DIR}/Dockerfile" ]; then
 
 elif ls ${S2I_SOURCE_DIR}/*.gradle* &> /dev/null; then
   echo "S2I source build for Gradle detected, due to presence of a *.gradle* in ${S2I_SOURCE_DIR}"
-  build_dir=$(get_gradle_output_dir)
-  check_error "Cannot get output dir: $build_dir" $?
-  build_gradle ${build_dir} ${DEPLOYMENTS_DIR}
+  build_lib=$(get_gradle_output_libs)
+  check_error "Cannot get output dir: $build_lib" $?
+  build_gradle_grpc ${build_dist} ${DEPLOYMENTS_DIR}
+  build_gradle ${build_lib} ${DEPLOYMENTS_DIR}
+
 
 else
   echo "S2I source build with plain binaries detected"
