@@ -319,7 +319,7 @@ elif [ -f "${S2I_SOURCE_DIR}/Dockerfile" ]; then
 
 elif ls ${S2I_SOURCE_DIR}/*.gradle* &> /dev/null; then
   echo "S2I source build for Gradle detected, due to presence of a *.gradle* in ${S2I_SOURCE_DIR}"
-  ls -ltr /tmp
+  ls -ltr /tmp/src
   # Gradle build: fat jar e.g springboot
   build_libs=$(get_gradle_output_libs)
   check_error "Cannot get output dir: $build_libs" $?
