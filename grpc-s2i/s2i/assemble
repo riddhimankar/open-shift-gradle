@@ -379,7 +379,7 @@ if [ ${nr_zip} = 1 ]; then
   single_zip=`ls *.zip | grep -v '^original-'`
   echo "Found ${single_zip}..."
   unzip -q "${single_zip}"
-  rm "${single_zip}"
+  #rm "${single_zip}"
 fi
 
 cd "${old_dir}"
