@@ -205,7 +205,7 @@ function get_gradle_output_dist() {
 
   # If multi module build and no ARTIFACT_DIR is set --> error
   if [ x"${ARTIFACT_DIR}" = x ]; then
-	dir="${S2I_SOURCE_DIR}/build/distributions/*.zip"
+	dir="${S2I_SOURCE_DIR}/build/distributions/"
   else
     if [ "${ARTIFACT_DIR:0:1}" = "/" ]; then
        echo "ARTIFACT_DIR \"${ARTIFACT_DIR}\" must not be absolute but relative to the source directory"
@@ -379,7 +379,7 @@ if [ ${nr_zip} = 1 ]; then
   single_zip=`ls *.zip | grep -v '^original-'`
   echo "Found ${single_zip}..."
   unzip -q "${single_zip}"
-  #rm "${single_zip}"
+  rm "${single_zip}"
 fi
 
 cd "${old_dir}"
