@@ -384,7 +384,7 @@ if [ ${nr_zip} = 1 ]; then
   mv * server
   cd server/bin/
   rm *.bat
-  mv * run
+  mv * start
   cd ../../../
   rm "${single_zip}"
   single_jar=`ls *.jar | grep -v '^original-'`
