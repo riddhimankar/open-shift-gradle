@@ -379,12 +379,12 @@ if [ ${nr_zip} = 1 ]; then
   single_zip=`ls *.zip | grep -v '^original-'`
   echo "Found ${single_zip}..."
   #unzip -q "${single_zip}"
-  unzip -q "${single_zip}" -d ./grpc
-  cd grpc
-  mv * app
-  cd app/bin/
+  unzip -q "${single_zip}" -d ./service
+  cd service
+  mv * server
+  cd server/bin/
   rm *.bat
-  mv * app
+  mv * run
   cd ../../../
   rm "${single_zip}"
   single_jar=`ls *.jar | grep -v '^original-'`
