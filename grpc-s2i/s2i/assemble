@@ -381,7 +381,7 @@ if [ ${nr_zip} = 1 ]; then
   unzip -q "${single_zip}"
   unzip -q "${single_zip}" -d ./grpc
   cd grpc
-  mv * app
+  mv * app2
   cd ..
   rm "${single_zip}"
   single_jar=`ls *.jar | grep -v '^original-'`
