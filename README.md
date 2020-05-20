@@ -3,6 +3,8 @@
 
 #### basic-s2i
 
+`oc new-project grpc-s2i-builder`
+or
 `$ oc project gradle-s2i-builder`
 
 `$ oc import-image openjdk18 --from=registry.access.redhat.com/redhat-openjdk-18/openjdk18-openshift --confirm`

@@ -378,14 +378,17 @@ nr_zip=`ls *.zip 2>/dev/null | grep -v '^original-' | wc -l | tr -d '[[:space:]]
 if [ ${nr_zip} = 1 ]; then
   single_zip=`ls *.zip | grep -v '^original-'`
   echo "Found ${single_zip}..."
-  unzip -q "${single_zip}"
+  #unzip -q "${single_zip}"
   unzip -q "${single_zip}" -d ./grpc
   cd grpc
-  mv * app2
-  cd ..
+  mv * app
+  cd app/bin/
+  rm *.bat
+  mv * app
+  cd ../../../
   rm "${single_zip}"
   single_jar=`ls *.jar | grep -v '^original-'`
-  echo "Found ${single_jar} with ${single_zip}. for GRPC we need only zip ..."
+  echo "Found ${single_jar} with ${single_zip}. For GRPC services, we need only zip ..."
   echo "Deleting ${single_jar} ..."
   rm "${single_jar}"
 fi
