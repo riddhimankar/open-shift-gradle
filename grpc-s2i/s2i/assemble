@@ -82,8 +82,10 @@ function copy_artifacts() {
             cp_args="*.war"
 		elif ls *.zip &> /dev/null; then
             cp_args="*.zip"
-        else
+		elif ls *.jar &> /dev/null; then
             cp_args="*.jar"
+        else
+            cp_args="*"
         fi
     fi
     echo "Running: cp -v ${cp_args} ${dest}"
