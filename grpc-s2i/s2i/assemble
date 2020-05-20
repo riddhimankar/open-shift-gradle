@@ -380,6 +380,9 @@ if [ ${nr_zip} = 1 ]; then
   echo "Found ${single_zip}..."
   unzip -q "${single_zip}"
   rm "${single_zip}"
+  single_jar=`ls *.jar | grep -v '^original-'`
+  echo "Found ${single_jar} with zip do deleting it..."
+  rm "${single_jar}"
 fi
 
 cd "${old_dir}"
