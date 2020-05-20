@@ -226,8 +226,11 @@ function build_gradle() {
   # GRPC artifacts are created during build
   local build_dist=$2
   
+  # Application configurations
+  local app_config=$3
+  
   # Where to put the artifacts
-  local app_dir=$3
+  local app_dir=$4
 
   # Default args
   local gradle_args=${GRADLE_ARGS:-build -x test}
@@ -261,6 +264,10 @@ function build_gradle() {
   copy_artifacts ${build_dist} ${app_dir}
   check_error "copying artifacts from ${build_dist} to ${app_dir}" $?
 
+  echo "Copying Application configurations from ${app_config} to ${app_dir} ..."
+  copy_artifacts ${app_config} ${app_dir}
+  check_error "copying artifacts from ${app_config} to ${app_dir}" $?
+  
   # ======================
   # Remove repo if desired
   if [ "x${GRADLE_CLEAR_REPO}" != "x" ]; then
@@ -319,7 +326,7 @@ elif [ -f "${S2I_SOURCE_DIR}/Dockerfile" ]; then
 
 elif ls ${S2I_SOURCE_DIR}/*.gradle* &> /dev/null; then
   echo "S2I source build for Gradle detected, due to presence of a *.gradle* in ${S2I_SOURCE_DIR}"
-  ls -ltr /tmp/src
+  ls -ltr ${S2I_SOURCE_DIR}
   # Gradle build: fat jar e.g springboot
   build_libs=$(get_gradle_output_libs)
   check_error "Cannot get output dir: $build_libs" $?
@@ -328,7 +335,11 @@ elif ls ${S2I_SOURCE_DIR}/*.gradle* &> /dev/null; then
   build_dist=$(get_gradle_output_dist)
   check_error "Cannot get output dir: $build_dist" $?
   
-  build_gradle ${build_libs} ${build_dist} ${DEPLOYMENTS_DIR}
+  # Gradle build: config files
+  app_config=${S2I_SOURCE_DIR}/config
+  check_error "Cannot get output dir: $build_dist" $?
+  
+  build_gradle ${build_libs} ${build_dist} ${app_config} ${DEPLOYMENTS_DIR}
   
   #build_gradle_grpc ${build_dist} ${DEPLOYMENTS_DIR}
 
