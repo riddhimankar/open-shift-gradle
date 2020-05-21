@@ -28,7 +28,7 @@ RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined"
     mkdir -p ${GRADLE_HOME} \
 	&& curl -sSL "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	-o /tmp/gradle-bin.zip \
-	&& unzip /tmp/gradle-bin.zip -d $GRADLE_HOME \
+	&& unzip -q /tmp/gradle-bin.zip -d $GRADLE_HOME \
 	&& mv $GRADLE_HOME/gradle-${GRADLE_VERSION}/* $GRADLE_HOME \
 	&& rm -rf $GRADLE_HOME/gradle-${GRADLE_VERSION} \
 	&& ln -s $GRADLE_HOME/bin/gradle /usr/bin/gradle \
