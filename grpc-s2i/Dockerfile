@@ -13,6 +13,8 @@ LABEL io.k8s.description="Java with JDK" \
 # Temporary switch to root
 USER root
 
+ENV GRADLE_VERSION=6.4
+
 #RUN yum -y update \
 #  && yum install -y --setopt=skip_missing_names_on_install=False \
 #       unzip rsync \
@@ -20,6 +22,13 @@ USER root
 #       java-1.8.0-openjdk-devel \
 #  && yum clean all \
 
+# Install Gradle
+RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
+    mkdir /opt/gradle && \
+    unzip -d /opt/gradle gradle-${GRADLE_VERSION}-bin.zip && \
+    rm gradle-${GRADLE_VERSION}-bin.zip && \
+    ln -s /opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle /usr/local/bin/gradle
+	
 # S2I scripts
 COPY s2i /usr/local/s2i
 ADD README.md /usr/local/s2i/usage.txt
