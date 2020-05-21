@@ -26,7 +26,14 @@ ENV GRADLE_VERSION=6.4 \
 #  && yum clean all \
 
 # Install CURL
-RUN apk --no-cache add curl
+#RUN apk --no-cache add curl
+# Install CURL
+#RUN apk --no-cache add curl
+
+RUN set -ex ;\
+  	apk add --no-cache \
+			gcc \
+			curl
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
