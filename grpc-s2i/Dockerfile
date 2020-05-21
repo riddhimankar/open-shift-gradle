@@ -15,6 +15,7 @@ LABEL io.k8s.description="Java with JDK" \
 USER root
 
 ENV GRADLE_VERSION=6.4 \
+	PROTOBUF_VERSION=3.11.4 \
 	PROTOC_HOME=/usr/bin/protoc 
 
 #RUN yum -y update \
