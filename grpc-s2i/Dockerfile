@@ -33,6 +33,7 @@ ENV GRADLE_VERSION=6.4 \
 RUN set -ex ;\
   	apk add --no-cache \
 			gcc \
+			g++ \
 			curl
 
 # Install Gradle
