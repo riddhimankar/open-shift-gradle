@@ -15,6 +15,7 @@ LABEL io.k8s.description="Java with JDK" \
 USER root
 
 ENV GRADLE_VERSION=6.4 \
+    APK_GLIBC_VERSION=2.29-r0 \
 	PROTOBUF_VERSION=3.11.4 \
 	PROTOC_HOME=/usr/bin/protoc 
 
@@ -34,7 +35,11 @@ RUN set -ex ;\
   	apk add --no-cache \
 			gcc \
 			g++ \
-			curl
+			curl \
+			make \
+		    glibc-${APK_GLIBC_VERSION}.apk \
+		    ;\
+	rm -rf /var/cache/apk/*
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
