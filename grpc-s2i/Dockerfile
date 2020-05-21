@@ -23,11 +23,16 @@ ENV GRADLE_VERSION=6.4
 #  && yum clean all \
 
 # Install Gradle
-RUN wget https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip && \
-    mkdir /opt/gradle && \
-    unzip -d /opt/gradle gradle-${GRADLE_VERSION}-bin.zip && \
-    rm gradle-${GRADLE_VERSION}-bin.zip && \
-    ln -s /opt/gradle/gradle-${GRADLE_VERSION}/bin/gradle /usr/local/bin/gradle
+RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
+    GRADLE_HOME=/opt/gradle/${GRADLE_VERSION} ; \
+    mkdir -p ${GRADLE_HOME} \
+	&& curl -sSL "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	-o /tmp/gradle-bin.zip \
+	&& unzip /tmp/gradle-bin.zip -d $GRADLE_HOME \
+	&& mv $GRADLE_HOME/gradle-${GRADLE_VERSION}/* $GRADLE_HOME \
+	&& rm -rf $GRADLE_HOME/gradle-${GRADLE_VERSION} \
+	&& ln -s $GRADLE_HOME/bin/gradle /usr/bin/gradle \
+	&& rm -f /tmp/gradle-${GRADLE_VERSION}-bin.zip
 	
 # S2I scripts
 COPY s2i /usr/local/s2i
