@@ -1,5 +1,6 @@
-FROM redhat-openjdk-18/openjdk18-openshift
-MAINTAINER Richard Weber <riche.weber@gmail.com>
+#FROM redhat-openjdk-18/openjdk18-openshift
+FROM openjdk:8-jdk-alpine
+MAINTAINER Riddhiman Kar <riddhiman.kar@fisglobal.com>
 
 LABEL io.k8s.description="Java with JDK" \
     io.openshift.tags="builder,java,jdk" \
