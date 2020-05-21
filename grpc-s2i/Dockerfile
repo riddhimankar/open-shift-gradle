@@ -23,6 +23,9 @@ ENV GRADLE_VERSION=6.4
 #       java-1.8.0-openjdk-devel \
 #  && yum clean all \
 
+# Install CURL
+RUN apk --no-cache add curl
+
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
     GRADLE_HOME=/opt/gradle/${GRADLE_VERSION} ; \
