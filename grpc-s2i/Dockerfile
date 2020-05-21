@@ -37,9 +37,7 @@ RUN set -ex ;\
 			g++ \
 			curl \
 			make \
-		    glibc-${APK_GLIBC_VERSION}.apk \
-		    ;\
-	rm -rf /var/cache/apk/*
+		    glibc-${APK_GLIBC_VERSION}.apk
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
