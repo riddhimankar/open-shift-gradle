@@ -19,7 +19,7 @@ ENV GRADLE_VERSION=6.4 \
 	APK_GLIBC_VERSION=2.28-r0
 
 # Install CURL
-RUN apk --no-cache add curl
+#RUN apk --no-cache add curl
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
