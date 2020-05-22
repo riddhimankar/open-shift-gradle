@@ -21,7 +21,7 @@ ENV GRADLE_VERSION=6.4 \
 # Install build tools
 RUN set -ex ;\
   	apk add --no-cache \
-		curl 
+		curl \
 #	  	# for glibc
 #		wget \
 		# so we are able to do rpc endpoint tests
