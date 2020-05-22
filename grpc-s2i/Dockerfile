@@ -58,7 +58,7 @@ RUN set -ex ;\
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
     GRADLE_HOME=/opt/gradle/${GRADLE_VERSION} ; \
     mkdir -p ${GRADLE_HOME} \
-	&& curl -#SL "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	&& curl -sSL "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	-o /tmp/gradle-bin.zip \
 	&& unzip -q /tmp/gradle-bin.zip -d $GRADLE_HOME \
 	&& mv $GRADLE_HOME/gradle-${GRADLE_VERSION}/* $GRADLE_HOME \
