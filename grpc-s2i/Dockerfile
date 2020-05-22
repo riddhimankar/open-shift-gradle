@@ -15,9 +15,7 @@ LABEL io.k8s.description="Java with JDK" \
 USER root
 
 ENV GRADLE_VERSION=6.4 \
-    APK_GLIBC_VERSION=2.29-r0 \
-	PROTOBUF_VERSION=3.11.4 \
-	PROTOC_HOME=/usr/bin/protoc 
+    APK_GLIBC_VERSION=2.29-r0
 
 #RUN yum -y update \
 #  && yum install -y --setopt=skip_missing_names_on_install=False \
@@ -27,16 +25,11 @@ ENV GRADLE_VERSION=6.4 \
 #  && yum clean all \
 
 # Install CURL
-#RUN apk --no-cache add curl
-# Install CURL
-#RUN apk --no-cache add curl
-
 RUN set -ex ;\
   	apk add --no-cache \
-			gcc \
-			g++ \
 			curl \
-			make
+			;\
+	rm -rf /var/cache/apk/*
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
@@ -49,18 +42,6 @@ RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined"
 	&& rm -rf $GRADLE_HOME/gradle-${GRADLE_VERSION} \
 	&& ln -s $GRADLE_HOME/bin/gradle /usr/bin/gradle \
 	&& rm -f /tmp/gradle-${GRADLE_VERSION}-bin.zip
-	
-###################
-# Install PROTOBUF
-# Only works for 3.0.0 and up
-#
-RUN set -ex ;\
-	# Install PROTOBUF
-	# Only works for 3.0.0 and up
-	curl -#sL "https://github.com/google/protobuf/releases/download/v$PROTOBUF_VERSION/protobuf-java-$PROTOBUF_VERSION.tar.gz" | tar -xz -C /usr/local ;\
-    cd /usr/local/protobuf-$PROTOBUF_VERSION && ./configure --prefix=/usr ;\
-    make && make install ;\
-    rm -rf /usr/local/protobuf-$PROTOBUF_VERSION
 	
 # S2I scripts
 COPY s2i /usr/local/s2i
