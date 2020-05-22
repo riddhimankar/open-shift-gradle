@@ -19,8 +19,9 @@ ENV GRADLE_VERSION=6.4 \
 	APK_GLIBC_VERSION=2.31-r0
 
 # Install build tools
-#RUN set -ex ;\
-#  	apk add --no-cache \
+RUN set -ex ;\
+  	apk add --no-cache \
+		curl 
 #	  	# for glibc
 #		wget \
 		# so we are able to do rpc endpoint tests
@@ -45,8 +46,8 @@ ENV GRADLE_VERSION=6.4 \
 #		unzip \
 #		ca-certificates \
 #		glibc-${APK_GLIBC_VERSION}.apk \
-#		;\
-#	rm -rf /var/cache/apk/*
+		;\
+	rm -rf /var/cache/apk/*
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
