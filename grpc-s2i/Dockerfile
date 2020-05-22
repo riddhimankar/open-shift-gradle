@@ -71,6 +71,7 @@ COPY s2i /usr/local/s2i
 ADD README.md /usr/local/s2i/usage.txt
 RUN chmod +x /usr/local/s2i/*
 RUN mkdir /deployments
+RUN chmod -R 777 /deployments
 RUN chmod -R 777 /opt
 
 EXPOSE 9001
