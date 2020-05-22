@@ -15,7 +15,7 @@ LABEL io.k8s.description="Java with JDK" \
 USER root
 
 ENV GRADLE_VERSION=6.4 \
-    APK_GLIBC_VERSION=2.29-r0
+    APK_GLIBC_VERSION=2.31-r0
 
 #RUN yum -y update \
 #  && yum install -y --setopt=skip_missing_names_on_install=False \
@@ -28,6 +28,7 @@ ENV GRADLE_VERSION=6.4 \
 RUN set -ex ;\
   	apk add --no-cache \
 			curl \
+			glibc-${APK_GLIBC_VERSION}.apk \
 			;\
 	rm -rf /var/cache/apk/*
 
@@ -35,7 +36,7 @@ RUN set -ex ;\
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
     GRADLE_HOME=/opt/gradle/${GRADLE_VERSION} ; \
     mkdir -p ${GRADLE_HOME} \
-	&& curl -sSL "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
+	&& curl -#SL "https://downloads.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip" \
 	-o /tmp/gradle-bin.zip \
 	&& unzip -q /tmp/gradle-bin.zip -d $GRADLE_HOME \
 	&& mv $GRADLE_HOME/gradle-${GRADLE_VERSION}/* $GRADLE_HOME \
