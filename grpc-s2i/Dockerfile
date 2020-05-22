@@ -15,7 +15,7 @@ LABEL io.k8s.description="Java with JDK" \
 USER root
 
 ENV GRADLE_VERSION=6.4 \
-	APK_GLIBC_VERSION=2.31-r0 \
+	APK_GLIBC_VERSION=2.31-r0
 
 #RUN yum -y update \
 #  && yum install -y --setopt=skip_missing_names_on_install=False \
