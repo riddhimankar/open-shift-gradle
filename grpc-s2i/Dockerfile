@@ -70,7 +70,7 @@ RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined"
 COPY s2i /usr/local/s2i
 ADD README.md /usr/local/s2i/usage.txt
 RUN chmod +x /usr/local/s2i/*
-mkdir /deployments
+RUN mkdir /deployments
 RUN chmod -R 777 /opt
 
 EXPOSE 9001
