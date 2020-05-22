@@ -36,7 +36,7 @@ ENV GRADLE_VERSION=6.4 \
 		# https://github.com/docker-library/openjdk/issues/73
 #		fontconfig \
 #		ttf-dejavu \
-		;\
+#		;\
 	# install glibc using: https://github.com/sgerrand/alpine-pkg-glibc
 #	wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub ;\
 #	wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${APK_GLIBC_VERSION}/glibc-${APK_GLIBC_VERSION}.apk ;\
