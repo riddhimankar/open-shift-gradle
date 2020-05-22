@@ -306,9 +306,6 @@ echo "=================================================================="
 echo "Starting S2I Java Build ....."
 pwd
 ls -ltr
-echo "current user..." whoami
-#mkdir /deployments
-#sudo mkdir /deployments
 [ -d "${DEPLOYMENTS_DIR}" ] || mkdir -p "${DEPLOYMENTS_DIR}"
 if [ -f "${S2I_SOURCE_DIR}/pom.xml" ]; then
   echo "S2I source build for Maven detected"
