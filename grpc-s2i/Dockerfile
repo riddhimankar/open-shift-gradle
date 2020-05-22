@@ -26,34 +26,34 @@ ENV GRADLE_VERSION=6.4 \
 #  && yum clean all \
 
 # Install build tools
-#RUN set -ex ;\
-#  	apk add --no-cache \
-#	  	# for glibc
-#		wget \
-#		# so we are able to do rpc endpoint tests
-#		openssl \
-#		curl \
-#		nmap \
-#		# for wait-for script to work
-#		netcat-openbsd \
-#		# for debugging
-#		vim \
-#		iperf3 \
-#		# to get fonts in awt to work
-#		# https://github.com/docker-library/openjdk/issues/73
-#		fontconfig \
-#		ttf-dejavu \
-#		;\
+RUN set -ex ;\
+  	apk add --no-cache \
+	  	# for glibc
+		wget \
+		# so we are able to do rpc endpoint tests
+		openssl \
+		curl \
+		nmap \
+		# for wait-for script to work
+		netcat-openbsd \
+		# for debugging
+		vim \
+		iperf3 \
+		# to get fonts in awt to work
+		# https://github.com/docker-library/openjdk/issues/73
+		fontconfig \
+		ttf-dejavu \
+		;\
 	# install glibc using: https://github.com/sgerrand/alpine-pkg-glibc
-#	wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub ;\
-#	wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${APK_GLIBC_VERSION}/glibc-${APK_GLIBC_VERSION}.apk ;\
+	wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub ;\
+	wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${APK_GLIBC_VERSION}/glibc-${APK_GLIBC_VERSION}.apk ;\
 	# add build deps to be removed after
-#	apk add --no-cache --virtual .build-deps \
-#		unzip \
-#		ca-certificates \
-#		glibc-${APK_GLIBC_VERSION}.apk \
-#		;\
-#	rm -rf /var/cache/apk/*
+	apk add --no-cache --virtual .build-deps \
+		unzip \
+		ca-certificates \
+		glibc-${APK_GLIBC_VERSION}.apk \
+		;\
+	rm -rf /var/cache/apk/*
 
 # Install Gradle
 RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined" ; exit 1 ; } ; \
