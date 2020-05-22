@@ -1,6 +1,6 @@
-#FROM redhat-openjdk-18/openjdk18-openshift
+FROM redhat-openjdk-18/openjdk18-openshift
 #FROM openjdk:8-jdk-alpine
-FROM koosiedemoer/netty-tcnative-alpine:latest
+#FROM koosiedemoer/netty-tcnative-alpine:latest
 MAINTAINER Riddhiman Kar <riddhiman.kar@fisglobal.com>
 
 LABEL io.k8s.description="Java with JDK" \
@@ -27,31 +27,31 @@ ENV GRADLE_VERSION=6.4 \
 
 # Install build tools
 RUN set -ex ;\
-  	apk add --no-cache \
+#  	apk add --no-cache \
 	  	# for glibc
-		wget \
+#		wget \
 		# so we are able to do rpc endpoint tests
-		openssl \
+#		openssl \
 		curl \
-		nmap \
+#		nmap \
 		# for wait-for script to work
-		netcat-openbsd \
+#		netcat-openbsd \
 		# for debugging
-		vim \
-		iperf3 \
+#		vim \
+#		iperf3 \
 		# to get fonts in awt to work
 		# https://github.com/docker-library/openjdk/issues/73
-		fontconfig \
-		ttf-dejavu \
-		;\
+#		fontconfig \
+#		ttf-dejavu \
+#		;\
 	# install glibc using: https://github.com/sgerrand/alpine-pkg-glibc
-	wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub ;\
-	wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${APK_GLIBC_VERSION}/glibc-${APK_GLIBC_VERSION}.apk ;\
+#	wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub ;\
+#	wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${APK_GLIBC_VERSION}/glibc-${APK_GLIBC_VERSION}.apk ;\
 	# add build deps to be removed after
-	apk add --no-cache --virtual .build-deps \
-		unzip \
-		ca-certificates \
-		glibc-${APK_GLIBC_VERSION}.apk \
+#	apk add --no-cache --virtual .build-deps \
+#		unzip \
+#		ca-certificates \
+#		glibc-${APK_GLIBC_VERSION}.apk \
 		;\
 	rm -rf /var/cache/apk/*
 
@@ -71,8 +71,8 @@ RUN set -x ; [ -z "$GRADLE_VERSION" ] && { echo "GRADLE_VERSION must be defined"
 COPY s2i /usr/local/s2i
 ADD README.md /usr/local/s2i/usage.txt
 RUN chmod +x /usr/local/s2i/*
-RUN mkdir /deployments
-RUN chmod -R 777 /deployments
+#RUN mkdir /deployments
+#RUN chmod -R 777 /deployments
 RUN chmod -R 777 /opt
 
 EXPOSE 9001

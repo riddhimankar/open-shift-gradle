@@ -2,5 +2,4 @@
 # Global S2I variable setup
 source `dirname "$0"`/s2i-setup
 
-#exec java -jar ${DEPLOYMENTS_DIR}/*.jar
-echo exec /deployments; ls /deployments/service/server/bin; sh /deployments/service/server/bin
+exec java -jar ${DEPLOYMENTS_DIR}/*.jar
