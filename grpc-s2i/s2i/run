@@ -3,4 +3,4 @@
 source `dirname "$0"`/s2i-setup
 
 #exec java -jar ${DEPLOYMENTS_DIR}/*.jar
-exec echo /deployments; ls /deployments/service/server/bin; sh /deployments/service/server/bin
+echo exec /deployments; ls /deployments/service/server/bin; sh /deployments/service/server/bin
